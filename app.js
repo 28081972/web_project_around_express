@@ -3,9 +3,11 @@ const express = require('express');
 const app = express();
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
+const routerUsersId = require('./routes/users');
 
 app.use('/', routerUsers);
 app.use('/', routerCards);
+app.use('/', routerUsersId);
 
 const { PORT = 3000 } = process.env;
 app.listen(PORT, () => {
