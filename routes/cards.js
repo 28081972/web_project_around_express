@@ -1,9 +1,21 @@
 const router = require('express').Router();
 
-const cards = require('../data/cards.json');
+const path = require('path');
+
+const datapath = path.join(__dirname, '../data/cards.json');
+
+const fs = require('fs');
 
 router.get('/cards', (req, res) => {
-  res.send(cards);
+  fs.readFile(datapath, { encoding: 'utf8' }, (err, data) => {
+    if (err) {
+      res.status(500);
+      res.send('Internal Server Error');
+      return;
+    }
+    const cards = JSON.parse(data);
+    res.send(cards);
+  });
 });
 
 module.exports = router;
