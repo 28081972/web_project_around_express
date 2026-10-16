@@ -7,6 +7,10 @@ const routerUsersId = require('./routes/users');
 
 app.use('/', routerUsers);
 app.use('/', routerCards);
+app.use((req, res) => {
+  res.status(404);
+  res.send({ message: 'Recurso solicitado no encontrado' });
+});
 app.use('/', routerUsersId);
 
 const { PORT = 3000 } = process.env;
